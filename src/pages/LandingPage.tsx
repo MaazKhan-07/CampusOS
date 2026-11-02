@@ -25,6 +25,8 @@ import {
   Award,
   Clock,
   HeartHandshake,
+  Menu,
+  X,
 } from 'lucide-react';
 import { useAuthStore } from '../store/useAuthStore';
 
@@ -34,6 +36,7 @@ export const LandingPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'books' | 'events' | 'lost' | 'notes'>('books');
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 72);
@@ -70,10 +73,10 @@ export const LandingPage: React.FC = () => {
           <a href="#faq" className={`transition-colors hover:text-accent`}>FAQ</a>
         </nav>
 
-        <div className="flex items-center gap-3">
-          <Link to="/login">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Link to="/login" className="hidden sm:inline-block">
             <button
-              className={`px-4 py-1.5 text-xs font-heading font-semibold rounded-xl transition-all duration-300 ${
+              className={`px-3 sm:px-4 py-1.5 text-xs font-heading font-semibold rounded-xl transition-all duration-300 ${
                 scrolled
                   ? 'text-[#F3EEE7] hover:text-accent border border-white/20 hover:border-accent/60'
                   : 'text-primary hover:text-accent border border-transparent hover:border-accent/40'
@@ -83,12 +86,100 @@ export const LandingPage: React.FC = () => {
             </button>
           </Link>
           <Link to="/app">
-            <button className="flex items-center gap-1.5 px-4 py-1.5 text-xs font-heading font-bold rounded-xl bg-accent text-white hover:bg-accent-hover transition-all duration-200 shadow-copper hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0">
-              Try Demo App <ArrowRight className="w-3.5 h-3.5" />
+            <button className="flex items-center gap-1.5 px-3 sm:px-4 py-1.5 text-xs font-heading font-bold rounded-xl bg-accent text-white hover:bg-accent-hover transition-all duration-200 shadow-copper hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0">
+              <span className="hidden sm:inline">Try Demo App</span>
+              <span className="sm:hidden">Demo</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </Link>
+
+          {/* Mobile hamburger menu toggle */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className={`md:hidden p-2 rounded-xl transition-colors ${
+              scrolled
+                ? 'text-[#F3EEE7] hover:bg-white/10'
+                : 'text-primary hover:bg-surface-muted'
+            }`}
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
       </header>
+
+      {/* Mobile Navigation Drawer */}
+      {mobileMenuOpen && (
+        <div
+          className={`md:hidden fixed inset-x-0 top-[65px] z-40 border-b shadow-soft-lg p-5 transition-all ${
+            scrolled
+              ? 'bg-[#01241C] border-white/10 text-[#F3EEE7]'
+              : 'bg-surface border-border text-primary'
+          }`}
+        >
+          <nav className="flex flex-col space-y-3 font-heading font-bold text-sm">
+            <a
+              href="#problem"
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-1 hover:text-accent transition-colors"
+            >
+              The Problem
+            </a>
+            <a
+              href="#features"
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-1 hover:text-accent transition-colors"
+            >
+              Core Features
+            </a>
+            <a
+              href="#why-campusos"
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-1 hover:text-accent transition-colors"
+            >
+              Why CampusOS
+            </a>
+            <a
+              href="#comparison"
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-1 hover:text-accent transition-colors"
+            >
+              Compare Platforms
+            </a>
+            <a
+              href="#pricing"
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-1 hover:text-accent transition-colors"
+            >
+              Pricing Plans
+            </a>
+            <a
+              href="#faq"
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-1 hover:text-accent transition-colors"
+            >
+              Frequently Asked Questions
+            </a>
+          </nav>
+
+          <div className="pt-4 mt-3 border-t border-border/60 flex flex-col gap-2">
+            <Link
+              to="/login"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full text-center py-2.5 rounded-xl border border-border font-heading font-semibold text-xs hover:bg-surface-muted transition-colors"
+            >
+              Student Log In
+            </Link>
+            <Link
+              to="/app"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full text-center py-2.5 rounded-xl bg-accent text-white font-heading font-bold text-xs shadow-copper"
+            >
+              Launch Live Demo App
+            </Link>
+          </div>
+        </div>
+      )}
 
       {/* 2. HERO SECTION */}
       <section className="relative pt-12 pb-20 md:pt-20 md:pb-32 px-4 sm:px-8 max-w-7xl mx-auto text-center overflow-hidden">
@@ -96,21 +187,21 @@ export const LandingPage: React.FC = () => {
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-accent/15 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="relative z-10 max-w-3xl mx-auto space-y-5">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface border border-accent/40 shadow-soft-sm">
-            <Sparkles className="w-4 h-4 text-accent" />
-            <span className="text-xs font-heading font-bold text-primary">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface border border-accent/40 shadow-soft-sm max-w-full">
+            <Sparkles className="w-4 h-4 text-accent shrink-0" />
+            <span className="text-[11px] sm:text-xs font-heading font-bold text-primary truncate sm:text-clip">
               The Next-Gen College Life Operating System
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold text-primary tracking-tight leading-[1.12]">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-heading font-extrabold text-primary tracking-tight leading-[1.15]">
             Everything a student needs, <br />
             <span className="text-accent underline decoration-accent/40 decoration-4 underline-offset-8">
               all in one place.
             </span>
           </h1>
 
-          <p className="text-sm sm:text-base md:text-lg text-text-muted max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-base md:text-lg text-text-muted max-w-2xl mx-auto leading-relaxed px-1">
             Eliminate the chaos of 15 scattered WhatsApp groups, lost Telegram PDFs, and forgotten notice boards. Trade used textbooks, recover lost items, RSVP to events, find internships, and share verified notes.
           </p>
 
@@ -139,25 +230,25 @@ export const LandingPage: React.FC = () => {
             </Button>
           </div>
 
-          <div className="pt-2 flex items-center justify-center gap-6 text-xs text-text-muted font-medium">
+          <div className="pt-2 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-text-muted font-medium">
             <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-700" /> Verified College Emails
+              <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0" /> Verified College Emails
             </span>
             <span className="flex items-center gap-1.5">
-              <Zap className="w-4 h-4 text-accent" /> Zero Setup Required
+              <Zap className="w-4 h-4 text-accent shrink-0" /> Zero Setup Required
             </span>
           </div>
         </div>
 
         {/* Floating Mock-UI Collage */}
-        <div className="relative mt-12 max-w-5xl mx-auto">
+        <div className="relative mt-10 sm:mt-12 max-w-5xl mx-auto">
           <div className="bg-surface/90 border border-border/80 shadow-soft-lg rounded-3xl p-4 sm:p-6 backdrop-blur-md">
-            <div className="flex items-center justify-between pb-4 border-b border-border/80 mb-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 pb-4 border-b border-border/80 mb-6">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-rose-400" />
                 <div className="w-3 h-3 rounded-full bg-amber-400" />
                 <div className="w-3 h-3 rounded-full bg-emerald-400" />
-                <span className="text-xs font-mono font-medium text-text-muted ml-2">
+                <span className="text-xs font-mono font-medium text-text-muted ml-2 truncate max-w-[180px] sm:max-w-none">
                   app.campusos.internal/dashboard
                 </span>
               </div>
@@ -274,8 +365,8 @@ export const LandingPage: React.FC = () => {
             <div className="w-10 h-10 rounded-full bg-accent text-primary flex items-center justify-center font-bold shadow-copper animate-bounce">
               <ChevronDown className="w-6 h-6 stroke-[3]" />
             </div>
-            <div className="mt-4 px-6 py-3 rounded-2xl bg-surface text-primary border border-accent/40 font-heading font-bold text-sm shadow-soft-lg flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-accent" />
+            <div className="mt-4 px-4 sm:px-6 py-2.5 sm:py-3 rounded-2xl bg-surface text-primary border border-accent/40 font-heading font-bold text-xs sm:text-sm shadow-soft-lg flex items-center justify-center gap-2 max-w-full text-center">
+              <Sparkles className="w-4 h-4 text-accent shrink-0" />
               <span>CampusOS unifies all 6 into a single, cohesive verified platform</span>
             </div>
           </div>
@@ -665,15 +756,15 @@ export const LandingPage: React.FC = () => {
             <div className="bg-surface text-text rounded-3xl p-6 shadow-soft-lg text-left border border-accent/20">
               {activeTab === 'books' && (
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
                       <h4 className="font-heading font-bold text-base text-primary">
                         Used Books Marketplace Preview
                       </h4>
                       <p className="text-xs text-text-muted">24 books listed across CSE, IT, Mechanical & MBA</p>
                     </div>
-                    <Link to="/app/books">
-                      <Button variant="accent" size="sm">Open Marketplace</Button>
+                    <Link to="/app/books" className="shrink-0">
+                      <Button variant="accent" size="sm" className="w-full sm:w-auto">Open Marketplace</Button>
                     </Link>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
@@ -697,15 +788,15 @@ export const LandingPage: React.FC = () => {
 
               {activeTab === 'events' && (
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
                       <h4 className="font-heading font-bold text-base text-primary">
                         Campus Events & Calendar Preview
                       </h4>
                       <p className="text-xs text-text-muted">20 live workshops, sports tournaments & cultural nights</p>
                     </div>
-                    <Link to="/app/events">
-                      <Button variant="accent" size="sm">View All Events</Button>
+                    <Link to="/app/events" className="shrink-0">
+                      <Button variant="accent" size="sm" className="w-full sm:w-auto">View All Events</Button>
                     </Link>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
@@ -725,15 +816,15 @@ export const LandingPage: React.FC = () => {
 
               {activeTab === 'lost' && (
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
                       <h4 className="font-heading font-bold text-base text-primary">
                         Lost & Found Live Feed Preview
                       </h4>
                       <p className="text-xs text-text-muted">Secure masked messaging keeps phone numbers private</p>
                     </div>
-                    <Link to="/app/lost-found">
-                      <Button variant="accent" size="sm">Open Lost & Found</Button>
+                    <Link to="/app/lost-found" className="shrink-0">
+                      <Button variant="accent" size="sm" className="w-full sm:w-auto">Open Lost & Found</Button>
                     </Link>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
@@ -753,15 +844,15 @@ export const LandingPage: React.FC = () => {
 
               {activeTab === 'notes' && (
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
                       <h4 className="font-heading font-bold text-base text-primary">
                         Verified Peer Notes & Past Papers
                       </h4>
                       <p className="text-xs text-text-muted">30 hand-curated topper notes and 5-year solved PYQs</p>
                     </div>
-                    <Link to="/app/notes">
-                      <Button variant="accent" size="sm">Browse Notes</Button>
+                    <Link to="/app/notes" className="shrink-0">
+                      <Button variant="accent" size="sm" className="w-full sm:w-auto">Browse Notes</Button>
                     </Link>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
@@ -812,6 +903,10 @@ export const LandingPage: React.FC = () => {
           <h2 className="text-3xl font-heading font-extrabold text-primary mt-2">
             Why legacy tools fall short
           </h2>
+        </div>
+
+        <div className="block md:hidden text-center text-[11px] text-text-muted mb-3 font-medium">
+          👉 Swipe horizontally to compare all platforms →
         </div>
 
         <div className="overflow-x-auto rounded-3xl border border-border bg-surface shadow-soft-sm">

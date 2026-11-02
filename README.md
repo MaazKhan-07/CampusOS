@@ -2,7 +2,7 @@
 
 > *"Everything a student needs, all in one place."*
 
-CampusOS is a complete, production-grade, fully responsive web application built for college life. It replaces the chaotic fragmentation of 15 WhatsApp groups, scattered Telegram PDF channels, lost Instagram event posters, and physical notice boards with a single, verified, unified digital operating system.
+CampusOS is a complete, production-grade, fully responsive web application built for college life. It replaces the chaotic fragmentation of 15 WhatsApp groups, scattered Telegram PDF channels, lost Instagram event posters, and physical notice boards with a single, verified, unified digital operating system.For Educational purpose.
 
 ---
 
@@ -29,22 +29,6 @@ CampusOS is a complete, production-grade, fully responsive web application built
 
 ---
 
-## 🎨 Design System & Palette
-
-| Token | Hex / Value | Purpose |
-|---|---|---|
-| `--bg` | `#E3DCD2` | Main application warm canvas background |
-| `--primary` | `#013328` | Deep green: sidebar, headings, primary buttons, footers |
-| `--accent` | `#CC8B65` | Warm copper: CTAs, active indicator bars, tags, highlights |
-| `--surface` | `#F3EEE7` | Card backgrounds, elevated panels, modal dialogs |
-| `--surface-dark` | `#0A4538` | Hover and active item states on dark green sidebar |
-| `--border` | `rgba(1,51,40,0.12)` | Subtle hair-line borders for clean structure |
-| `--text` | `#013328` | High contrast primary reading text |
-| `--text-muted` | `rgba(1,51,40,0.65)` | Secondary captions, timestamps, and subtitles |
-| `--on-primary` | `#F3EEE7` | Light text on dark green surfaces |
-| `--accent-soft` | `rgba(204,139,101,0.18)` | Soft copper tints for pills, badges, and glows |
-
----
 
 ## 👥 Demo Roles & Switcher
 
@@ -295,22 +279,6 @@ CampusOS/
    npm run build
    npm run preview
    ```
-
----
-
-## 📸 Screenshots & UI Walkthrough
-
-| Screen | Description |
-|---|---|
-| **Marketing Landing Page** | High-conversion hero with floating UI collage, 6-tool problem visualizer, features grid, pricing, and FAQ. |
-| **Student Home Dashboard** | Personalized greeting, pinned circulars, event passes wallet, and live application stage tracker. |
-| **Used Books Marketplace** | Search by branch/semester, Buy/Rent/Free tags, and instant in-app chat launch. |
-| **Lost & Found Hub** | Masked contact relay, category filters, and confetti-powered claim verification. |
-| **Events & Month Calendar** | Full interactive calendar schedule and SVG QR digital entry passes. |
-| **Club Operations Panel** | Member approval table, CSV attendance export, and Recharts attendance trends. |
-| **ATS Resume Builder** | Live two-pane editor with instant printable format. |
-| **College Admin Command** | Daily active student traffic charts, event authorization queue, and notice board management. |
-| **Recruiter Talent Hub** | Candidate ATS pipeline with status dropdowns and verified skills filter. |
 
 ---
 

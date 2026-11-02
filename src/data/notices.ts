@@ -1,0 +1,45 @@
+import { CollegeNotice } from '../types';
+
+export const mockNotices: CollegeNotice[] = [
+  {
+    id: 'not-1',
+    title: 'Odd Semester Mid-Term Examination Timetable 2026',
+    content: 'Mid-term tests will be conducted between Nov 18 and Nov 25, 2026. Students must carry physical or digital SIT Identity Cards to examination halls.',
+    date: '2026-11-01',
+    author: 'Office of the Controller of Examinations',
+    category: 'Exam',
+    isPinned: true,
+    priority: 'High',
+  },
+  {
+    id: 'not-2',
+    title: 'Placement Season 2026-27: Onboarding Mandatory Session',
+    content: 'Final year and pre-final year students registered with Training & Placement Cell must attend the technical readiness briefing this Friday at 4 PM in Auditorium.',
+    date: '2026-10-30',
+    author: 'Prof. Arvind Joshi, Training & Placement',
+    category: 'Placement',
+    isPinned: true,
+    priority: 'High',
+  },
+  {
+    id: 'not-3',
+    title: 'Diwali Break & Academic Calendar Revision',
+    content: 'The campus will observe Diwali holidays from Nov 8 to Nov 14. Academic lectures will resume in full swing on Monday, Nov 16.',
+    date: '2026-10-27',
+    author: 'Registrar Office SIT',
+    category: 'Holiday',
+    isPinned: false,
+    priority: 'Normal',
+  },
+  {
+    id: 'not-4',
+    title: 'Research Project Grant Applications for Undergraduates',
+    content: 'Seed research grants of up to ₹50,000 are available for innovative student capstone projects. Apply via the HOD recommendation portal by Nov 20.',
+    date: '2026-10-24',
+    author: 'Dean of R&D and Innovation',
+    category: 'Academic',
+    isPinned: false,
+    priority: 'Normal',
+  },
+];
+

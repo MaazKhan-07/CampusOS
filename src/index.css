@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #E3DCD2;
+  --primary: #013328;
+  --accent: #CC8B65;
+  --surface: #F3EEE7;
+  --surface-dark: #0A4538;
+  --border: rgba(1, 51, 40, 0.12);
+  --text: #013328;
+  --text-muted: rgba(1, 51, 40, 0.65);
+  --on-primary: #F3EEE7;
+  --accent-soft: rgba(204, 139, 101, 0.18);
+
+  /* RGB channels for Tailwind opacity modifiers (e.g. text-surface/70) */
+  --bg-rgb: 227 220 210;
+  --primary-rgb: 1 51 40;
+  --accent-rgb: 204 139 101;
+  --surface-rgb: 243 238 231;
+  --on-primary-rgb: 243 238 231;
+}
+
+@layer base {
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+/* Custom scrollbars with palette colors */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(1, 51, 40, 0.04);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(1, 51, 40, 0.2);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(1, 51, 40, 0.35);
+}
+
+/* Glassmorphism effects */
+.glass-panel {
+  background: rgba(243, 238, 231, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(1, 51, 40, 0.1);
+}
+
+.glass-panel-dark {
+  background: rgba(1, 51, 40, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(204, 139, 101, 0.2);
+}
+

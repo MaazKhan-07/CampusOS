@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <!-- Rounded container with primary dark green fill -->
+  <rect width="48" height="48" rx="14" fill="#013328" />
+  
+  <!-- Subtle inner gradient border -->
+  <rect x="1" y="1" width="46" height="46" rx="13" stroke="#CC8B65" stroke-opacity="0.3" stroke-width="1.5" />
+  
+  <!-- Stylized C with Campus Arch motif -->
+  <!-- Arch/Pillar motif -->
+  <path d="M14 34V22C14 16.4772 18.4772 12 24 12C29.5228 12 34 16.4772 34 22V24" stroke="#F3EEE7" stroke-width="3" stroke-linecap="round" />
+  
+  <!-- Architectural Keystone / Star / Spark in Copper -->
+  <circle cx="24" cy="20" r="3" fill="#CC8B65" />
+  
+  <!-- Dynamic Inner 'C' swoosh in Accent Copper -->
+  <path d="M33 28C31.5 31.5 28 34 24 34C18.4772 34 14 29.5228 14 24C14 20.5 16 17 19.5 15.5" stroke="#CC8B65" stroke-width="3.5" stroke-linecap="round" />
+  
+  <!-- Ground foundation line -->
+  <path d="M12 36H36" stroke="#F3EEE7" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.8" />
+</svg>
+
